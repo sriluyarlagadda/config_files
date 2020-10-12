@@ -1,4 +1,3 @@
-
 set number relativenumber
 
 " if hidden is not set, TextEdit might fail.
@@ -34,18 +33,18 @@ call plug#begin('~/AppData/Local/nvim/plugged')
 Plug 'tpope/vim-sensible' " Sensible defaults
 Plug 'sheerun/vim-polyglot'
 " this is for searching
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'install --all' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " only run on toggle of 'NerdTreeToggle
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " auto completion
-Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
 Plug 'airblade/vim-rooter'
 Plug 'itchyny/lightline.vim'
 Plug 'machakann/vim-highlightedyank'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'doums/darcula'
 call plug#end()
 
@@ -56,8 +55,8 @@ set splitbelow
 
 
 " vimrc mappings 
-:nnoremap <leader>ev :vsplit C:\Users\gteja\AppData\Local\nvim\init.vim<cr>
-:nnoremap <leader>sv :source C:\Users\gteja\AppData\Local\nvim\init.vim<cr>
+:nnoremap <leader>ev :vsplit ~/.config/nvim/init.vim<cr>
+:nnoremap <leader>sv :source ~/.config/nvim/init.vim<cr>
 
 " Quick-save
 nmap <leader>w :w<CR>
@@ -94,14 +93,16 @@ endif
 
 " <leader>s for Rg search
 nmap <leader>s :Rg<CR>
-let g:fzf_layout = { 'down': '~20%' }
+" Empty value to disable preview window altogether
+let g:fzf_preview_window = ''
+
+" Always enable preview window on the right with 60% width
+let g:fzf_preview_window = 'right:60%'
+
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
-
+  \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview(), <bang>0)
 
 hi Pmenu guibg=white guifg=black
 
@@ -203,7 +204,6 @@ nnoremap <silent> <leader>d  :<C-u>CocList diagnostics<cr>
 
 " Search workspace symbols
 nnoremap <silent> <leader>sy  :<C-u>CocList -I symbols<cr>
-
 
 "Color scheme
 colorscheme darcula
