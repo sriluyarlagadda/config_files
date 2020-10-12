@@ -73,6 +73,7 @@ nnoremap <c-l> <c-w>l<ESC>
 " terminal exit
 tnoremap jk <C-\><C-N>
 
+" cancel highlight
 nnoremap <leader>n :noh<CR>
 
 
