@@ -73,6 +73,7 @@ nnoremap <c-l> <c-w>l<ESC>
 " terminal exit
 tnoremap jk <C-\><C-N>
 
+nnoremap <leader>n :noh<CR>
 
 
 " FZF configuration
