@@ -28,8 +28,8 @@ set shiftwidth=4
 " highlight results when searching incrementally
 set incsearch
 
-
-call plug#begin('~/AppData/Local/nvim/plugged')
+call plug#begin(stdpath('data') . '/plugged')
+" call plug#begin('~/AppData/Local/nvim/plugged')
 Plug 'tpope/vim-sensible' " Sensible defaults
 Plug 'sheerun/vim-polyglot'
 " this is for searching
