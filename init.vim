@@ -23,13 +23,12 @@ set signcolumn=yes
 set tabstop=4
 set expandtab
 set shiftwidth=4
-
+set fileformat=unix
 
 " highlight results when searching incrementally
 set incsearch
 
 call plug#begin(stdpath('data') . '/plugged')
-" call plug#begin('~/AppData/Local/nvim/plugged')
 Plug 'tpope/vim-sensible' " Sensible defaults
 Plug 'sheerun/vim-polyglot'
 " this is for searching
@@ -44,6 +43,7 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
+"Plug 'neoclide/coc.nvim', { 'branch': 'master', 'do': 'yarn install --frozen-lockfile' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'doums/darcula'
 call plug#end()
@@ -191,6 +191,7 @@ nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 " Remap for do codeAction of current line
 nmap <leader>ac  <Plug>(coc-codeaction)
+nmap <leader>al  <Plug>(coc-codeaction-line)
 
 
 " Do command for refactor
